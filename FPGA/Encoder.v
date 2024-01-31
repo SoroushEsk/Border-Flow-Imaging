@@ -46,28 +46,9 @@ Image1 your_instance_name (
 	reg findStart;
 	reg carry ;
 	
-// ------ Find Start
-	/*
-	always @ ( posedge Clk ) begin 
-		if ( !reset ) begin
-			if ( state == StartPoint ) begin 
-				if ( !findStart ) begin 
-					{carry, col} <= {1'b0, col} + 1'b1;
-					if ( carry ) begin
-						row    <= row + 1'b1;
-					end
-					findStart <= data1[64 - col];
-					addr1     <= row;
-				end else begin 
-					addr1     <= addr1;
-				end
-			end 
-		end
-	end
-	*/
+
 //-------------
 	always @ ( posedge Clk ) begin 
-		
 		if ( reset ) begin 
 			perimiterCounter <= 8'b0000_0000;
 			EnDone           <= 1'b0;
@@ -75,7 +56,8 @@ Image1 your_instance_name (
 			state				  <= Initial;
 			row              <= 6'b000_000;
 			col              <= 6'b000_000;
-			findStart        <= 1'b0;
+			findStart        <= data1[63 - col];
+			addr1            <= 6'b000_000;
 		end else begin 
 			case ( state ) 
 				 Initial : begin 
@@ -89,7 +71,7 @@ Image1 your_instance_name (
 						if ( carry ) begin
 							row    <= row + 1'b1;
 						end
-						findStart <= data1[64 - col];
+						findStart <= data1[63 - col];
 						addr1     <= row;
 					end else begin 
 					addr1     <= addr1;

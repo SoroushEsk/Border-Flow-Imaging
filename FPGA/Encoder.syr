@@ -1,0 +1,423 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.23 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.23 secs
+ 
+--> Reading design: Encoder.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Encoder.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Encoder"
+Output Format                      : NGC
+Target Device                      : xc7a100t-3-csg324
+
+---- Source Options
+Top Module Name                    : Encoder
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 32
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+---- Other Options
+Cores Search Directories           : {"ipcore_dir"  }
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\ipcore_dir\Image1.v" into library work
+Parsing module <Image1>.
+Analyzing Verilog file "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" into library work
+Parsing module <Encoder>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <Encoder>.
+
+Elaborating module <Image1>.
+WARNING:HDLCompiler:1499 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\ipcore_dir\Image1.v" Line 39: Empty module <Image1> remains a black box.
+WARNING:HDLCompiler:1127 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 37: Assignment to data2 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 69: Assignment to perimiterCounter ignored, since the identifier is never used
+WARNING:HDLCompiler:634 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 28: Net <addr2[5]> does not have a driver.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <Encoder>.
+    Related source file is "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v".
+        Initial = 0
+        StartPoint = 1
+        FindCode = 2
+        FindArea = 3
+        DoneAnalysing = 4
+INFO:Xst:3210 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" line 31: Output port <doutb> of the instance <your_instance_name> is unconnected or connected to loadless signal.
+WARNING:Xst:653 - Signal <addr2> is used but never assigned. This sourceless signal will be automatically connected to value GND.
+    Found 3-bit register for signal <state>.
+    Found 6-bit register for signal <row>.
+    Found 6-bit register for signal <col>.
+    Found 1-bit register for signal <findStart>.
+    Found 1-bit register for signal <carry>.
+    Found 6-bit register for signal <addr1>.
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 2                                              |
+    | Transitions        | 3                                              |
+    | Inputs             | 1                                              |
+    | Outputs            | 2                                              |
+    | Clock              | Clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 000                                            |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 7-bit adder for signal <n0058> created at line 88.
+    Found 6-bit adder for signal <row[5]_GND_1_o_add_3_OUT> created at line 90.
+    Found 6-bit subtractor for signal <GND_1_o_GND_1_o_sub_6_OUT<5:0>> created at line 92.
+    Found 1-bit 64-to-1 multiplexer for signal <GND_1_o_data1[63]_Mux_6_o> created at line 92.
+    Summary:
+	inferred   3 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <Encoder> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 3
+ 6-bit adder                                           : 1
+ 6-bit subtractor                                      : 1
+ 7-bit adder                                           : 1
+# Registers                                            : 5
+ 1-bit register                                        : 2
+ 6-bit register                                        : 3
+# Multiplexers                                         : 4
+ 1-bit 64-to-1 multiplexer                             : 1
+ 6-bit 2-to-1 multiplexer                              : 3
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Reading core <ipcore_dir/Image1.ngc>.
+Loading core <Image1> for timing and area information for instance <your_instance_name>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 3
+ 6-bit adder                                           : 1
+ 6-bit subtractor                                      : 1
+ 7-bit adder                                           : 1
+# Registers                                            : 20
+ Flip-Flops                                            : 20
+# Multiplexers                                         : 4
+ 1-bit 64-to-1 multiplexer                             : 1
+ 6-bit 2-to-1 multiplexer                              : 3
+# FSMs                                                 : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FSM_0> on signal <state[1:1]> with sequential encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 0
+ 001   | 1
+-------------------
+
+Optimizing unit <Encoder> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block Encoder, actual ratio is 0.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 21
+ Flip-Flops                                            : 21
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : Encoder.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 47
+#      GND                         : 2
+#      LUT2                        : 3
+#      LUT3                        : 5
+#      LUT4                        : 3
+#      LUT5                        : 4
+#      LUT6                        : 29
+#      VCC                         : 1
+# FlipFlops/Latches                : 21
+#      FDE                         : 7
+#      FDR                         : 13
+#      FDRE                        : 1
+# RAMS                             : 2
+#      RAMB36E1                    : 2
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 2
+#      IBUF                        : 2
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 7a100tcsg324-3 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              21  out of  126800     0%  
+ Number of Slice LUTs:                   44  out of  63400     0%  
+    Number used as Logic:                44  out of  63400     0%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:     49
+   Number with an unused Flip Flop:      28  out of     49    57%  
+   Number with an unused LUT:             5  out of     49    10%  
+   Number of fully used LUT-FF pairs:    16  out of     49    32%  
+   Number of unique control sets:         3
+
+IO Utilization: 
+ Number of IOs:                          40
+ Number of bonded IOBs:                   3  out of    210     1%  
+
+Specific Feature Utilization:
+ Number of Block RAM/FIFO:                2  out of    135     1%  
+    Number using Block RAM only:          2
+ Number of BUFG/BUFGCTRLs:                1  out of     32     3%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+Clk                                | BUFGP                  | 23    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+Control Signal                                     | Buffer(FF name)                                                                                                                                              | Load  |
+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+your_instance_name/N1(your_instance_name/XST_GND:G)| NONE(your_instance_name/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/v6_init.ram/NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram)| 4     |
+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -3
+
+   Minimum period: 2.872ns (Maximum Frequency: 348.238MHz)
+   Minimum input arrival time before clock: 1.076ns
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: No path found
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'Clk'
+  Clock period: 2.872ns (frequency: 348.238MHz)
+  Total number of paths / destination ports: 229 / 29
+-------------------------------------------------------------------------
+Delay:               2.872ns (Levels of Logic = 4)
+  Source:            col_1 (FF)
+  Destination:       findStart (FF)
+  Source Clock:      Clk rising
+  Destination Clock: Clk rising
+
+  Data Path: col_1 to findStart
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q             24   0.361   0.481  col_1 (col_1)
+     LUT6:I4->O            1   0.097   0.693  Mmux_GND_1_o_data1[63]_Mux_6_o_125 (Mmux_GND_1_o_data1[63]_Mux_6_o_125)
+     LUT6:I0->O            2   0.097   0.560  Mmux_GND_1_o_data1[63]_Mux_6_o_8 (Mmux_GND_1_o_data1[63]_Mux_6_o_8)
+     LUT6:I2->O            1   0.097   0.379  GND_1_o_GND_1_o_sub_6_OUT<5>2 (GND_1_o_GND_1_o_sub_6_OUT<5>1)
+     LUT6:I4->O            1   0.097   0.000  GND_1_o_GND_1_o_sub_6_OUT<5>3 (GND_1_o_data1[63]_Mux_6_o)
+     FDRE:D                    0.008          findStart
+    ----------------------------------------
+    Total                      2.872ns (0.757ns logic, 2.115ns route)
+                                       (26.4% logic, 73.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'Clk'
+  Total number of paths / destination ports: 22 / 22
+-------------------------------------------------------------------------
+Offset:              1.076ns (Levels of Logic = 2)
+  Source:            reset (PAD)
+  Destination:       addr1_0 (FF)
+  Destination Clock: Clk rising
+
+  Data Path: reset to addr1_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            15   0.001   0.576  reset_IBUF (reset_IBUF)
+     LUT3:I0->O            7   0.097   0.307  _n0074_inv1 (_n0074_inv)
+     FDE:CE                    0.095          addr1_0
+    ----------------------------------------
+    Total                      1.076ns (0.193ns logic, 0.883ns route)
+                                       (17.9% logic, 82.1% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock Clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+Clk            |    2.872|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 19.00 secs
+Total CPU time to Xst completion: 18.94 secs
+ 
+--> 
+
+Total memory usage is 374936 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    5 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="HDLCompiler" num="1499" delta="new" >"\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\ipcore_dir\Image1.v" Line 39: Empty module &lt;<arg fmt="%s" index="1">Image1</arg>&gt; remains a black box.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="new" >"\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 37: Assignment to <arg fmt="%s" index="1">data2</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="new" >"\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 69: Assignment to <arg fmt="%s" index="1">perimiterCounter</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="634" delta="new" >"\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 28: Net &lt;<arg fmt="%s" index="1">addr2[5]</arg>&gt; does not have a driver.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v</arg>&quot; line <arg fmt="%s" index="2">31</arg>: Output port &lt;<arg fmt="%s" index="3">doutb</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">your_instance_name</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="warning" file="Xst" num="653" delta="new" >Signal &lt;<arg fmt="%s" index="1">addr2</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
+</msg>
+
+</messages>
+

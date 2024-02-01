@@ -13,7 +13,7 @@ module TB_Encoder;
 	wire [5:0] start_x;
 	wire [5:0] start_y;
 	wire [11:0] Area;
-	wire [7:0] Permiter;
+	wire [7:0] Perimiter;
 	wire Done;
 	wire Error;
 
@@ -26,7 +26,7 @@ module TB_Encoder;
 		.start_x(start_x), 
 		.start_y(start_y), 
 		.Area(Area), 
-		.Permiter(Permiter), 
+		.Perimiter(Perimiter), 
 		.Done(Done), 
 		.Error(Error)
 	);

@@ -121,9 +121,12 @@ Elaborating module <Encoder>.
 
 Elaborating module <Image1>.
 WARNING:HDLCompiler:1499 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\ipcore_dir\Image1.v" Line 39: Empty module <Image1> remains a black box.
-WARNING:HDLCompiler:1127 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 37: Assignment to data2 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 69: Assignment to perimiterCounter ignored, since the identifier is never used
-WARNING:HDLCompiler:634 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 28: Net <addr2[5]> does not have a driver.
+WARNING:HDLCompiler:413 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 135: Result of 7-bit expression is truncated to fit in 6-bit target.
+WARNING:HDLCompiler:413 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 154: Result of 32-bit expression is truncated to fit in 6-bit target.
+WARNING:HDLCompiler:413 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 202: Result of 32-bit expression is truncated to fit in 6-bit target.
+WARNING:HDLCompiler:413 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 212: Result of 32-bit expression is truncated to fit in 6-bit target.
+WARNING:HDLCompiler:413 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 223: Result of 32-bit expression is truncated to fit in 6-bit target.
+WARNING:HDLCompiler:1127 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" Line 96: Assignment to perimiterCounter ignored, since the identifier is never used
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -136,20 +139,31 @@ Synthesizing Unit <Encoder>.
         FindCode = 2
         FindArea = 3
         DoneAnalysing = 4
-INFO:Xst:3210 - "\\vmware-host\shared folders\Border-Flow-Imaging\FPGA\Encoder.v" line 31: Output port <doutb> of the instance <your_instance_name> is unconnected or connected to loadless signal.
-WARNING:Xst:653 - Signal <addr2> is used but never assigned. This sourceless signal will be automatically connected to value GND.
+    Found 1-bit register for signal <Done>.
     Found 3-bit register for signal <state>.
     Found 6-bit register for signal <row>.
     Found 6-bit register for signal <col>.
     Found 1-bit register for signal <findStart>.
-    Found 1-bit register for signal <carry>.
     Found 6-bit register for signal <addr1>.
+    Found 64-bit register for signal <r_row_0>.
+    Found 64-bit register for signal <r_row_1>.
+    Found 64-bit register for signal <r_row_2>.
+    Found 1-bit register for signal <isStart>.
+    Found 8-bit register for signal <Perimiter>.
+    Found 3-bit register for signal <Code>.
+    Found 1-bit register for signal <AreaCalculated>.
+    Found 12-bit register for signal <Area>.
+    Found 1-bit register for signal <cellAmount>.
+    Found 1-bit register for signal <carry>.
+    Found 6-bit register for signal <addr2>.
+    Found 6-bit register for signal <r_current_px>.
+    Found 6-bit register for signal <r_current_py>.
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
-    | States             | 2                                              |
-    | Transitions        | 3                                              |
-    | Inputs             | 1                                              |
-    | Outputs            | 2                                              |
+    | States             | 5                                              |
+    | Transitions        | 11                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 3                                              |
     | Clock              | Clk (rising_edge)                              |
     | Reset              | reset (positive)                               |
     | Reset type         | synchronous                                    |
@@ -157,14 +171,38 @@ WARNING:Xst:653 - Signal <addr2> is used but never assigned. This sourceless sig
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 7-bit adder for signal <n0058> created at line 88.
-    Found 6-bit adder for signal <row[5]_GND_1_o_add_3_OUT> created at line 90.
-    Found 6-bit subtractor for signal <GND_1_o_GND_1_o_sub_6_OUT<5:0>> created at line 92.
-    Found 1-bit 64-to-1 multiplexer for signal <GND_1_o_data1[63]_Mux_6_o> created at line 92.
+    Found 7-bit subtractor for signal <n0205> created at line 53.
+    Found 6-bit subtractor for signal <start_y> created at line 54.
+    Found 6-bit subtractor for signal <r_current_py[5]_GND_1_o_sub_49_OUT> created at line 180.
+    Found 6-bit subtractor for signal <addr1[5]_GND_1_o_sub_51_OUT> created at line 185.
+    Found 6-bit subtractor for signal <addr2[5]_GND_1_o_sub_52_OUT> created at line 186.
+    Found 6-bit subtractor for signal <r_current_px[5]_GND_1_o_sub_54_OUT> created at line 197.
+    Found 6-bit adder for signal <r_current_px[5]_GND_1_o_add_11_OUT> created at line 74.
+    Found 8-bit adder for signal <EnPerimiter[7]_GND_1_o_add_38_OUT> created at line 149.
+    Found 6-bit adder for signal <r_current_py[5]_GND_1_o_add_60_OUT> created at line 218.
+    Found 6-bit adder for signal <addr2[5]_GND_1_o_add_63_OUT> created at line 224.
+    Found 7-bit adder for signal <n0365> created at line 247.
+    Found 7-bit adder for signal <n0367> created at line 250.
+    Found 12-bit adder for signal <EnAreaCounter[11]_GND_1_o_add_140_OUT> created at line 253.
+    Found 6-bit subtractor for signal <GND_1_o_GND_1_o_sub_27_OUT<5:0>> created at line 131.
+    Found 6-bit subtractor for signal <GND_1_o_GND_1_o_sub_63_OUT<5:0>> created at line 223.
+    Found 1-bit 64-to-1 multiplexer for signal <w_matrix<1>> created at line 67.
+    Found 1-bit 64-to-1 multiplexer for signal <w_matrix<2>> created at line 68.
+    Found 1-bit 64-to-1 multiplexer for signal <w_matrix<3>> created at line 69.
+    Found 1-bit 64-to-1 multiplexer for signal <w_matrix<0>> created at line 71.
+    Found 1-bit 64-to-1 multiplexer for signal <w_matrix<4>> created at line 72.
+    Found 1-bit 64-to-1 multiplexer for signal <w_matrix<7>> created at line 74.
+    Found 1-bit 64-to-1 multiplexer for signal <w_matrix<6>> created at line 75.
+    Found 1-bit 64-to-1 multiplexer for signal <w_matrix<5>> created at line 76.
+    Found 1-bit 64-to-1 multiplexer for signal <GND_1_o_data1[63]_Mux_27_o> created at line 131.
+    Found 1-bit 64-to-1 multiplexer for signal <col[5]_data1[63]_Mux_139_o> created at line 252.
+    Found 6-bit comparator equal for signal <r_current_px[5]_start_x[5]_equal_129_o> created at line 233
+    Found 6-bit comparator equal for signal <r_current_py[5]_start_y[5]_equal_130_o> created at line 233
     Summary:
-	inferred   3 Adder/Subtractor(s).
-	inferred  20 D-type flip-flop(s).
-	inferred   4 Multiplexer(s).
+	inferred  15 Adder/Subtractor(s).
+	inferred 257 D-type flip-flop(s).
+	inferred   2 Comparator(s).
+	inferred  57 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <Encoder> synthesized.
 
@@ -172,16 +210,29 @@ Unit <Encoder> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 15
+ 12-bit adder                                          : 1
  6-bit adder                                           : 1
- 6-bit subtractor                                      : 1
- 7-bit adder                                           : 1
-# Registers                                            : 5
- 1-bit register                                        : 2
- 6-bit register                                        : 3
-# Multiplexers                                         : 4
- 1-bit 64-to-1 multiplexer                             : 1
- 6-bit 2-to-1 multiplexer                              : 3
+ 6-bit addsub                                          : 2
+ 6-bit subtractor                                      : 7
+ 7-bit adder                                           : 2
+ 7-bit subtractor                                      : 1
+ 8-bit adder                                           : 1
+# Registers                                            : 18
+ 1-bit register                                        : 6
+ 12-bit register                                       : 1
+ 3-bit register                                        : 1
+ 6-bit register                                        : 6
+ 64-bit register                                       : 3
+ 8-bit register                                        : 1
+# Comparators                                          : 2
+ 6-bit comparator equal                                : 2
+# Multiplexers                                         : 57
+ 1-bit 2-to-1 multiplexer                              : 6
+ 1-bit 64-to-1 multiplexer                             : 10
+ 3-bit 2-to-1 multiplexer                              : 6
+ 6-bit 2-to-1 multiplexer                              : 24
+ 64-bit 2-to-1 multiplexer                             : 11
 # FSMs                                                 : 1
 
 =========================================================================
@@ -193,19 +244,35 @@ Macro Statistics
 Reading core <ipcore_dir/Image1.ngc>.
 Loading core <Image1> for timing and area information for instance <your_instance_name>.
 
+Synthesizing (advanced) Unit <Encoder>.
+The following registers are absorbed into accumulator <EnAreaCounter>: 1 register on signal <EnAreaCounter>.
+The following registers are absorbed into counter <EnPerimiter>: 1 register on signal <EnPerimiter>.
+Unit <Encoder> synthesized (advanced).
+
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 13
  6-bit adder                                           : 1
- 6-bit subtractor                                      : 1
- 7-bit adder                                           : 1
-# Registers                                            : 20
- Flip-Flops                                            : 20
-# Multiplexers                                         : 4
- 1-bit 64-to-1 multiplexer                             : 1
- 6-bit 2-to-1 multiplexer                              : 3
+ 6-bit addsub                                          : 2
+ 6-bit subtractor                                      : 7
+ 7-bit adder                                           : 2
+ 7-bit subtractor                                      : 1
+# Counters                                             : 1
+ 8-bit up counter                                      : 1
+# Accumulators                                         : 1
+ 12-bit up accumulator                                 : 1
+# Registers                                            : 237
+ Flip-Flops                                            : 237
+# Comparators                                          : 2
+ 6-bit comparator equal                                : 2
+# Multiplexers                                         : 57
+ 1-bit 2-to-1 multiplexer                              : 6
+ 1-bit 64-to-1 multiplexer                             : 10
+ 3-bit 2-to-1 multiplexer                              : 6
+ 6-bit 2-to-1 multiplexer                              : 24
+ 64-bit 2-to-1 multiplexer                             : 11
 # FSMs                                                 : 1
 
 =========================================================================
@@ -214,19 +281,24 @@ Macro Statistics
 *                         Low Level Synthesis                           *
 =========================================================================
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <FSM_0> on signal <state[1:1]> with sequential encoding.
+Optimizing FSM <FSM_0> on signal <state[1:3]> with gray encoding.
 -------------------
  State | Encoding
 -------------------
- 000   | 0
- 001   | 1
+ 000   | 000
+ 001   | 001
+ 010   | 011
+ 011   | 010
+ 100   | 110
 -------------------
 
 Optimizing unit <Encoder> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block Encoder, actual ratio is 0.
+Found area constraint ratio of 100 (+ 5) on block Encoder, actual ratio is 1.
+FlipFlop r_current_px_0 has been replicated 2 time(s)
+FlipFlop r_current_px_1 has been replicated 2 time(s)
 
 Final Macro Processing ...
 
@@ -234,8 +306,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 21
- Flip-Flops                                            : 21
+# Registers                                            : 264
+ Flip-Flops                                            : 264
 
 =========================================================================
 
@@ -258,24 +330,31 @@ Top Level Output File Name         : Encoder.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 47
+# BELS                             : 1017
 #      GND                         : 2
-#      LUT2                        : 3
-#      LUT3                        : 5
-#      LUT4                        : 3
-#      LUT5                        : 4
-#      LUT6                        : 29
-#      VCC                         : 1
-# FlipFlops/Latches                : 21
-#      FDE                         : 7
-#      FDR                         : 13
-#      FDRE                        : 1
+#      INV                         : 4
+#      LUT1                        : 18
+#      LUT2                        : 21
+#      LUT3                        : 226
+#      LUT4                        : 28
+#      LUT5                        : 164
+#      LUT6                        : 512
+#      MUXCY                       : 18
+#      MUXF7                       : 2
+#      VCC                         : 2
+#      XORCY                       : 20
+# FlipFlops/Latches                : 264
+#      FD                          : 1
+#      FDE                         : 23
+#      FDR                         : 4
+#      FDRE                        : 236
 # RAMS                             : 2
 #      RAMB36E1                    : 2
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 2
+# IO Buffers                       : 38
 #      IBUF                        : 2
+#      OBUF                        : 36
 
 Device utilization summary:
 ---------------------------
@@ -284,20 +363,20 @@ Selected Device : 7a100tcsg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              21  out of  126800     0%  
- Number of Slice LUTs:                   44  out of  63400     0%  
-    Number used as Logic:                44  out of  63400     0%  
+ Number of Slice Registers:             264  out of  126800     0%  
+ Number of Slice LUTs:                  973  out of  63400     1%  
+    Number used as Logic:               973  out of  63400     1%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     49
-   Number with an unused Flip Flop:      28  out of     49    57%  
-   Number with an unused LUT:             5  out of     49    10%  
-   Number of fully used LUT-FF pairs:    16  out of     49    32%  
-   Number of unique control sets:         3
+ Number of LUT Flip Flop pairs used:    977
+   Number with an unused Flip Flop:     713  out of    977    72%  
+   Number with an unused LUT:             4  out of    977     0%  
+   Number of fully used LUT-FF pairs:   260  out of    977    26%  
+   Number of unique control sets:        17
 
 IO Utilization: 
  Number of IOs:                          40
- Number of bonded IOBs:                   3  out of    210     1%  
+ Number of bonded IOBs:                  39  out of    210    18%  
 
 Specific Feature Utilization:
  Number of Block RAM/FIFO:                2  out of    135     1%  
@@ -325,7 +404,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-Clk                                | BUFGP                  | 23    |
+Clk                                | BUFGP                  | 266   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -340,9 +419,9 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 2.872ns (Maximum Frequency: 348.238MHz)
-   Minimum input arrival time before clock: 1.076ns
-   Maximum output required time after clock: No path found
+   Minimum period: 4.525ns (Maximum Frequency: 221.014MHz)
+   Minimum input arrival time before clock: 2.159ns
+   Maximum output required time after clock: 2.280ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -351,48 +430,73 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'Clk'
-  Clock period: 2.872ns (frequency: 348.238MHz)
-  Total number of paths / destination ports: 229 / 29
+  Clock period: 4.525ns (frequency: 221.014MHz)
+  Total number of paths / destination ports: 496764 / 523
 -------------------------------------------------------------------------
-Delay:               2.872ns (Levels of Logic = 4)
-  Source:            col_1 (FF)
-  Destination:       findStart (FF)
+Delay:               4.525ns (Levels of Logic = 7)
+  Source:            r_row_2_24 (FF)
+  Destination:       addr1_1 (FF)
   Source Clock:      Clk rising
   Destination Clock: Clk rising
 
-  Data Path: col_1 to findStart
+  Data Path: r_row_2_24 to addr1_1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q             24   0.361   0.481  col_1 (col_1)
-     LUT6:I4->O            1   0.097   0.693  Mmux_GND_1_o_data1[63]_Mux_6_o_125 (Mmux_GND_1_o_data1[63]_Mux_6_o_125)
-     LUT6:I0->O            2   0.097   0.560  Mmux_GND_1_o_data1[63]_Mux_6_o_8 (Mmux_GND_1_o_data1[63]_Mux_6_o_8)
-     LUT6:I2->O            1   0.097   0.379  GND_1_o_GND_1_o_sub_6_OUT<5>2 (GND_1_o_GND_1_o_sub_6_OUT<5>1)
-     LUT6:I4->O            1   0.097   0.000  GND_1_o_GND_1_o_sub_6_OUT<5>3 (GND_1_o_data1[63]_Mux_6_o)
-     FDRE:D                    0.008          findStart
+     FDRE:C->Q             5   0.361   0.712  r_row_2_24 (r_row_2_24)
+     LUT6:I0->O            1   0.097   0.556  Mmux_w_matrix<6>_122 (Mmux_w_matrix<6>_122)
+     LUT6:I2->O            1   0.097   0.556  Mmux_w_matrix<6>_7 (Mmux_w_matrix<6>_7)
+     LUT6:I2->O            8   0.097   0.716  r_current_px<5>11 (w_matrix<6>)
+     LUT5:I0->O           12   0.097   0.346  _n04611 (_n0461)
+     LUT6:I5->O            1   0.097   0.295  _n0661_inv1 (_n0661_inv1)
+     LUT5:I4->O            1   0.097   0.295  _n0661_inv2_rstpot (_n0661_inv2_rstpot)
+     LUT3:I2->O            1   0.097   0.000  addr1_1_dpot (addr1_1_dpot)
+     FDRE:D                    0.008          addr1_1
     ----------------------------------------
-    Total                      2.872ns (0.757ns logic, 2.115ns route)
-                                       (26.4% logic, 73.6% route)
+    Total                      4.525ns (1.048ns logic, 3.477ns route)
+                                       (23.2% logic, 76.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'Clk'
-  Total number of paths / destination ports: 22 / 22
+  Total number of paths / destination ports: 266 / 265
 -------------------------------------------------------------------------
-Offset:              1.076ns (Levels of Logic = 2)
+Offset:              2.159ns (Levels of Logic = 3)
   Source:            reset (PAD)
-  Destination:       addr1_0 (FF)
+  Destination:       r_current_px_1 (FF)
   Destination Clock: Clk rising
 
-  Data Path: reset to addr1_0
+  Data Path: reset to r_current_px_1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            15   0.001   0.576  reset_IBUF (reset_IBUF)
-     LUT3:I0->O            7   0.097   0.307  _n0074_inv1 (_n0074_inv)
-     FDE:CE                    0.095          addr1_0
+     IBUF:I->O           244   0.001   0.823  reset_IBUF (reset_IBUF)
+     LUT5:I0->O           13   0.097   0.739  _n0483_inv21 (_n0483_inv2)
+     LUT6:I1->O            7   0.097   0.307  _n0520_inv3 (_n0520_inv)
+     FDE:CE                    0.095          r_current_px_1
     ----------------------------------------
-    Total                      1.076ns (0.193ns logic, 0.883ns route)
-                                       (17.9% logic, 82.1% route)
+    Total                      2.159ns (0.290ns logic, 1.869ns route)
+                                       (13.4% logic, 86.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'Clk'
+  Total number of paths / destination ports: 102 / 36
+-------------------------------------------------------------------------
+Offset:              2.280ns (Levels of Logic = 3)
+  Source:            col_4 (FF)
+  Destination:       start_y<4> (PAD)
+  Source Clock:      Clk rising
+
+  Data Path: col_4 to start_y<4>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             9   0.361   0.720  col_4 (col_4)
+     LUT5:I0->O            8   0.097   0.715  Msub_n0205_cy<4>11 (Msub_n0205_cy<4>)
+     LUT6:I1->O            3   0.097   0.289  Msub_start_y_xor<4>11 (start_y_4_OBUF)
+     OBUF:I->O                 0.000          start_y_4_OBUF (start_y<4>)
+    ----------------------------------------
+    Total                      2.280ns (0.555ns logic, 1.725ns route)
+                                       (24.3% logic, 75.7% route)
 
 =========================================================================
 
@@ -404,20 +508,20 @@ Clock to Setup on destination clock Clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-Clk            |    2.872|         |         |         |
+Clk            |    4.525|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 19.00 secs
-Total CPU time to Xst completion: 18.94 secs
+Total REAL time to Xst completion: 31.00 secs
+Total CPU time to Xst completion: 30.98 secs
  
 --> 
 
-Total memory usage is 374936 kilobytes
+Total memory usage is 408540 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    5 (   0 filtered)
-Number of infos    :    1 (   0 filtered)
+Number of warnings :    7 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
 

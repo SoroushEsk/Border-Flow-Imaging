@@ -2,12 +2,13 @@
 *
 
 # But don't ignore .v and .xco files
-!*.v
-!*.xco
+!FPGA/*.v
+!FPGA/*.xco
 !*.py
 !*.txt
 !*.coe
 !*.jpg
+
 
 # Don't ignore .gitignore file
 !.gitignore

@@ -28,14 +28,14 @@ module Encoder(
 	reg [5:0] addr1, addr2;
 	wire [63:00] data1, data2;
 
-Image1 your_instance_name (
-  .clka(Clk),
-  .addra(addr1), 
-  .douta(data1), 
-  .clkb(Clk),
-  .addrb(addr2), 
-  .doutb(data2) 
-);	 
+	Image1 your_instance_name (
+	  .clka(Clk),
+	  .addra(addr1), 
+	  .douta(data1), 
+	  .clkb(Clk),
+	  .addrb(addr2), 
+	  .doutb(data2) 
+	);	 
 	 
 // ------ Decluration ----------
 	reg [2:0] state;

@@ -3,7 +3,9 @@
 
 
 module FPGA_Sender(
-							input clk
+							input Clk, 
+							input reset,
+							output UART_Out
     );
 
 

@@ -25,7 +25,7 @@ module TUART_TB;
 		Clk = 0;
 		reset = 1;
 		T_EN = 0;
-		Data = 131;
+		Data = 62;
 
 		// Wait 100 ns for global reset to finish
 		#3;
@@ -33,9 +33,11 @@ module TUART_TB;
 		T_EN = 1;
 		reset = 0;
 		// Add stimulus here
-
+	
 	end
-   
+   always @ ( posedge Transmit_Done )begin 
+		Data = Data + 1;
+	end 
 	always #1 Clk =~Clk; 
 endmodule
 

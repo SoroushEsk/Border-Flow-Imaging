@@ -30,6 +30,7 @@ module UART_Transmit  #(parameter ClkFreq = 50000000,  B_Rate = 9600)
 //================= Main Code ======================
 
 	always @( posedge Clk ) begin 
+		Transmit_Done		<= 	1'b0;
 		if ( reset ) begin 
 			state 						<= IDLE;
 			clk_count					<= 32'd0;
@@ -38,7 +39,6 @@ module UART_Transmit  #(parameter ClkFreq = 50000000,  B_Rate = 9600)
 			if ( clk_count == CLKS_PER_BIT - 1 ) begin 
 				case ( state ) 
 					IDLE : begin 
-					Transmit_Done		<= 	1'b0;
 						if ( T_EN ) begin 
 							state			<=		START_BIT;
 						end
@@ -91,8 +91,6 @@ module UART_Transmit  #(parameter ClkFreq = 50000000,  B_Rate = 9600)
 					CLEANUP: begin 
 						state				<=		 IDLE;
 						Transmit_Done	<= 	 1'b1;
-						clk_count		<= 	 32'd0;
-						
 					end
 				endcase 
 			end else begin 

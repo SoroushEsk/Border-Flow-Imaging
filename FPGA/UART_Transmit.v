@@ -5,7 +5,7 @@ module UART_Transmit  #(parameter ClkFreq = 50000000,  B_Rate = 9600)
    input       T_EN,
    input [7:0] Data,
    output reg  Serial,
-   output      Transmit_Done
+   output reg  Transmit_Done
    );
   
   localparam IDLE         = 4'b0000;
@@ -23,7 +23,7 @@ module UART_Transmit  #(parameter ClkFreq = 50000000,  B_Rate = 9600)
   localparam CLEANUP      = 4'b1100;
    
 	
-	localparam CLKS_PER_BIT = ClkFreq / B_Rate;	
+	localparam CLKS_PER_BIT = ClkFreq / (2 * B_Rate);	
 //----------------Module Variables -----------------
 	reg [03:00] state;
 	reg [31:00] clk_count;
@@ -31,15 +31,19 @@ module UART_Transmit  #(parameter ClkFreq = 50000000,  B_Rate = 9600)
 
 	always @( posedge Clk ) begin 
 		if ( reset ) begin 
-			state 		<= IDLE;
-			clk_count	<= 32'd0;
-			Serial   	<= 1'b1;
+			state 		  <= IDLE;
+			clk_count	  <= 32'd0;
+			Serial   	  <= 1'b1;
+			Transmit_Done <= 1'd0;
 		end else begin 
-			if ( clk_count == CLKS_PER_BIT - 1 ) begin 
+			if ( clk_count == CLKS_PER_BIT - 1 ) begin
+				clk_count <= 32'd0;
 				case ( state ) 
 					IDLE : begin 
 						if ( T_EN ) begin 
 							state		<=		START_BIT;
+							
+							Transmit_Done <= 1'd0;
 						end
 					end
 					
@@ -88,7 +92,8 @@ module UART_Transmit  #(parameter ClkFreq = 50000000,  B_Rate = 9600)
 						state			<= 	CLEANUP;					
 					end
 					CLEANUP: begin 
-						state			<= IDLE;
+						state			  <= IDLE;
+						Transmit_Done <= 1'b1;
 					end
 				endcase 
 			end else begin 

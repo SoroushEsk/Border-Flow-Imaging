@@ -53,8 +53,8 @@ module Encoder(
 	assign {borrow, start_x}  = {1'b0, col} - 1'b1;
 	assign start_y            = row - borrow;
 // ----- set Done -----------
-
-	assign Done = EnDone;
+	assign Error = EnError;
+	assign Done  = EnDone;
 // ------- current point -------
 
 	reg [5:0] r_current_py, r_current_px;
@@ -88,6 +88,8 @@ module Encoder(
 // -------- Done Counting Area ----
 
 	reg [11:00] EnAreaCounter;
+	reg [05:00] row_a, col_a;
+	reg carry_a;
 	assign Area = EnAreaCounter;
 	reg AreaCalculated;
 	reg cellAmount;
@@ -115,6 +117,9 @@ module Encoder(
 			AreaCalculated   <= 1'b0;
 			EnAreaCounter    <= 12'b0000_0000_0000;
 			cellAmount		  <= 1'b0;
+			row_a		        <= 6'd0;
+			col_a				  <= 6'd0;
+			carry_a			  <= 1'b0;
 		end else begin 
 			case ( state ) 
 				 Initial : begin 
@@ -233,9 +238,6 @@ module Encoder(
 						if ( r_current_px == start_x && r_current_py == start_y ) begin 
 							EnDone   <= 1'b1;
 							state    <= FindArea;
-							row 		<= 6'b000_000;
-							col  		<= 6'b000_000;
-							carry    <= 1'b0;
 							
 						end
 					end 
@@ -244,14 +246,14 @@ module Encoder(
 					EnDone		<= 1'b0;
 				 	if ( !AreaCalculated ) begin 
 					
-						{carry, col} 	<= {1'b0, col} + 1'b1;
-						if ( carry ) begin
+						{carry_a, col_a} 	<= {1'b0, col_a} + 1'b1;
+						if ( carry_a ) begin
 						
-							{AreaCalculated, row} <= {1'b0, row} + 1'b1;
+							{AreaCalculated, row_a} <= {1'b0, row_a} + 1'b1;
 						end
-						cellAmount 		<= data1[col];
+						cellAmount 		<= data1[col_a];
 						EnAreaCounter  <= EnAreaCounter + cellAmount;
-						addr1     		<= row;
+						addr1     		<= row_a;
 					end else begin 
 						addr1     		<= addr1;
 						addr2     		<= addr2;

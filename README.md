@@ -1,5 +1,3 @@
-Certainly! Here’s the revised version:
-
 ---
 
 ### README for Image Encoding and Decoding Project
@@ -68,5 +66,3 @@ This project involves developing an image encoding and decoding system utilizing
 4.  **Group Work**: If the project is done in pairs, the report should clearly state the contributions of each group member.
 
 ---
-
-This version provides a more polished and structured description of the project and its requirements.
